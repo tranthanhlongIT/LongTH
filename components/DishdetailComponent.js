@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
+import { ScrollView } from 'react-native-virtualized-view';
 import { Card, Image, Icon } from 'react-native-elements';
 import { DISHES } from '../shared/dishes';
-import { ScrollView } from 'react-native-virtualized-view';
 import { COMMENTS } from '../shared/comments';
-
 
 class RenderComments extends Component {
   render() {
@@ -56,14 +55,14 @@ class Dishdetail extends Component {
     this.state = {
       dishes: DISHES,
       comments: COMMENTS,
-      favorites: [],
+      favorites: []
     };
   }
   render() {
     const dishId = parseInt(this.props.route.params.dishId);
     const dish = this.state.dishes[dishId];
-    const comments = this.state.comments.filter((cmt) => cmt.dishId === dishId);
     const favorite = this.state.favorites.some((el) => el === dishId);
+    const comments = this.state.comments.filter((cmt) => cmt.dishId === dishId);
     return (
       <ScrollView>
         <RenderDish dish={dish} favorite={favorite} onPressFavorite={() => this.markFavorite(dishId)} />
@@ -71,6 +70,7 @@ class Dishdetail extends Component {
       </ScrollView>
     );
   }
+
   markFavorite(dishId) {
     this.setState({ favorites: this.state.favorites.concat(dishId)});
   }

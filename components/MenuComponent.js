@@ -20,6 +20,7 @@ class Menu extends Component {
       />
     );
   }
+  
   renderMenuItem(item, index) {
     const { navigate } = this.props.navigation;
     return (
